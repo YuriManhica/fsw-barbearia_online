@@ -48,4 +48,5 @@ const BarberShopDetaisPage = async ({ params }: BarberShopDetaisPageProps) => {
     </div>
   );
 };
+
 export default BarberShopDetaisPage;
