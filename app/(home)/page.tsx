@@ -42,7 +42,7 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className="px-5 mt-6 mb-[4.5rem]">
+      <div className="px-5 mt-6 mb-12">
         <h2 className="px-5 text-xs mb-3 uppercase text-gray-300 font-extrabold">
           Populares
         </h2>
