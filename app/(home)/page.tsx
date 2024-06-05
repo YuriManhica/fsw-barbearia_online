@@ -1,10 +1,9 @@
-import { format } from "date-fns";
-import { ptBR } from "date-fns/locale";
 import BookingItem from "../_components/booking-item";
 import Header from "../_components/header";
 import { db } from "../_lib/prisma";
 import BarberShopItem from "./_componets/barbershop-item";
 import Search from "./_componets/search";
+import Welcome from "./_componets/welcome";
 
 export default async function Home() {
   //chamar prisma e pagar barbearias
@@ -14,12 +13,7 @@ export default async function Home() {
     <div>
       <Header />
       <div className="px-5 pt-5">
-        <h2 className="text-xl font-bold">Olá, Yuri.</h2>
-        <p className="capitalize text-sm">
-          {format(new Date(), "EEEE',' dd 'de' MMMM", {
-            locale: ptBR,
-          })}
-        </p>
+        <Welcome />
       </div>
       <div className="px-5 mt-6">
         <Search />
@@ -42,7 +36,7 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className="px-5 mt-6 mb-12">
+      <div className="px-5 mt-6 mb-8">
         <h2 className="px-5 text-xs mb-3 uppercase text-gray-300 font-extrabold">
           Populares
         </h2>
