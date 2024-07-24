@@ -55,7 +55,6 @@ model Bookings {
   barbershopId String
   barbershop   Barbershop @relation(fields: [barbershopId], references: [id])
   date         DateTime   @db.Timestamp
-  status       String
 }
 
 model Account {
