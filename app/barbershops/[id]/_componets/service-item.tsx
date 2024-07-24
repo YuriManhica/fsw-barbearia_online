@@ -12,11 +12,13 @@ import {
   SheetTrigger,
 } from "@/app/_components/ui/sheet";
 import { Barbershop, Service } from "@prisma/client";
-import { format } from "date-fns";
+import { format, setHours, setMinutes } from "date-fns";
 import { ptBR } from "date-fns/locale";
-import { signIn } from "next-auth/react";
+import { Loader2 } from "lucide-react";
+import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useMemo, useState } from "react";
+import { saveBooking } from "../_actions/save-booking";
 import { generateDateTimeList } from "../_helpers/hours";
 
 interface ServiceItemsProps {
@@ -31,8 +33,10 @@ const ServiceItems = ({
   barbershop,
   isAuthenticated,
 }: ServiceItemsProps) => {
+  const { data } = useSession();
   const [date, setDate] = useState<Date | undefined>(undefined);
   const [hour, setHour] = useState<string | undefined>();
+  const [isloading, setLoading] = useState(false);
 
   const handleHourClick = (time: string) => {
     setHour(time);
@@ -54,6 +58,29 @@ const ServiceItems = ({
     return date ? generateDateTimeList(date) : [];
   }, [date]);
 
+  const handleBookingSubmit = async () => {
+    setLoading(true);
+    try {
+      if (!hour || !date || !data?.user) {
+        return;
+      }
+      const dateHour = Number(hour.split(":")[0]);
+      const dateMinutes = Number(hour.split(":")[1]);
+      const newDate = setMinutes(setHours(date, dateHour), dateMinutes);
+
+      await saveBooking({
+        barbershopId: barbershop.id,
+        serviceId: service.id,
+        date: newDate,
+        userId: (data.user as any).id,
+      });
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <Card>
       <CardContent className="p-3 w-full">
@@ -74,7 +101,7 @@ const ServiceItems = ({
             <p className="text-sm text-gray-400">{service.description}</p>
 
             <div className="flex items-center justify-between mt-3">
-              <p className="text-sm font-bold text-primary">
+              <p className="text-sm font-bold text-primary uppercase">
                 {Intl.NumberFormat("pt-MZ", {
                   style: "currency",
                   currency: "MZN",
@@ -149,7 +176,7 @@ const ServiceItems = ({
                       <CardContent className="p-4 gap-3 flex flex-col">
                         <div className="flex justify-between">
                           <h2 className="font-bold">{service.name}</h2>
-                          <h3 className="font-semibold">
+                          <h3 className="font-semibold uppercase">
                             {Intl.NumberFormat("pt-MZ", {
                               style: "currency",
                               currency: "MZN",
@@ -183,7 +210,15 @@ const ServiceItems = ({
                   </div>
 
                   <SheetFooter className="px-5">
-                    <Button>Confirmar Reserva</Button>
+                    <Button
+                      onClick={handleBookingSubmit}
+                      disabled={!hour || isloading}
+                    >
+                      {isloading && (
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      )}
+                      Confirmar Reserva
+                    </Button>
                   </SheetFooter>
                 </SheetContent>
               </Sheet>
