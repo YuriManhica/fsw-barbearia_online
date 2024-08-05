@@ -18,8 +18,10 @@ import { Loader2 } from "lucide-react";
 import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useMemo, useState } from "react";
+import { toast } from "sonner";
 import { saveBooking } from "../_actions/save-booking";
 import { generateDateTimeList } from "../_helpers/hours";
+import { useRouter } from "next/navigation";
 
 interface ServiceItemsProps {
   barbershop: Barbershop;
@@ -33,10 +35,12 @@ const ServiceItems = ({
   barbershop,
   isAuthenticated,
 }: ServiceItemsProps) => {
+  const router = useRouter();
   const { data } = useSession();
   const [date, setDate] = useState<Date | undefined>(undefined);
   const [hour, setHour] = useState<string | undefined>();
   const [isloading, setLoading] = useState(false);
+  const [sheetIsOpen, setSheetIsOpen] = useState(false);
 
   const handleHourClick = (time: string) => {
     setHour(time);
@@ -74,6 +78,19 @@ const ServiceItems = ({
         date: newDate,
         userId: (data.user as any).id,
       });
+
+      setSheetIsOpen(false);
+      setHour(undefined);
+      setDate(undefined);
+      toast("Agendamento realizado com sucesso!", {
+        description: format(newDate, "'Para' dd 'de' MMMM 'as' HH':'mm.'", {
+          locale: ptBR,
+        }),
+        action: {
+          label: "Ir para Agendamentos",
+          onClick: () => router.push("/bookings"),
+        },
+      });
     } catch (error) {
       console.error(error);
     } finally {
@@ -107,7 +124,7 @@ const ServiceItems = ({
                   currency: "MZN",
                 }).format(Number(service.price))}
               </p>
-              <Sheet>
+              <Sheet open={sheetIsOpen} onOpenChange={setSheetIsOpen}>
                 <SheetTrigger asChild>
                   <Button
                     variant="secondary"
