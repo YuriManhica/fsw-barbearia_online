@@ -1,4 +1,3 @@
-import { isFuture, isPast } from "date-fns";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import BookingItem from "../_components/booking-item";
@@ -15,22 +14,40 @@ const BookingsPage = async () => {
     redirect("/");
   }
 
-  const bookings = await db.bookings.findMany({
-    where: {
-      userId: (session.user as any).id,
-    },
-    include: {
-      service: true,
-      barbershop: true,
-    },
-  });
+  const [confirmedBookings, finishedBookings] = await Promise.all([
+    db.bookings.findMany({
+      where: {
+        userId: (session.user as any).id,
+        date: {
+          gte: new Date(),
+        },
+      },
+      include: {
+        service: true,
+        barbershop: true,
+      },
+    }),
+    db.bookings.findMany({
+      where: {
+        userId: (session.user as any).id,
+        date: {
+          lte: new Date(),
+        },
+      },
+      include: {
+        service: true,
+        barbershop: true,
+      },
+    }),
+  ]);
 
-  const confirmedBookings = bookings.filter((bookings) =>
-    isFuture(bookings.date)
-  );
-  const finisheddBookings = bookings.filter((bookings) =>
-    isPast(bookings.date)
-  );
+  // const confirmedBookings = bookings.filter((bookings) =>
+  //   isFuture(bookings.date)
+  // );
+  // const finisheddBookings = bookings.filter((bookings) =>
+  //   isPast(bookings.date)
+  // );
+
   return (
     <>
       <Header />
@@ -53,7 +70,7 @@ const BookingsPage = async () => {
         </h2>
 
         <div className="flex flex-col gap-3">
-          {finisheddBookings.map((booking) => (
+          {finishedBookings.map((booking) => (
             <BookingItem key={booking.id} booking={booking} />
           ))}
         </div>
