@@ -8,6 +8,17 @@ import Image from "next/image";
 import { useState } from "react";
 import { toast } from "sonner";
 import { cancelBooking } from "../_actions/cancel-booking";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "../_components/ui/alert-dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
@@ -160,17 +171,45 @@ const BookingItem = ({ booking }: BookingItemProps) => {
             <SheetClose asChild>
               <Button className="w-full">Voltar</Button>
             </SheetClose>
-            <Button
-              onClick={handleBookingOnClick}
-              disabled={!isBookingConfirmed || isDeleteLoading}
-              className="w-full"
-              variant="destructive"
-            >
-              {isDeleteLoading && (
-                <Loader className="mr-2 h-4 w-4 animate-spin" />
-              )}
-              Cancelar Reserva
-            </Button>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button
+                  disabled={!isBookingConfirmed || isDeleteLoading}
+                  className="w-full"
+                  variant="destructive"
+                >
+                  {isDeleteLoading && (
+                    <Loader className="mr-2 h-4 w-4 animate-spin" />
+                  )}
+                  Cancelar Reserva
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent className="w-[90%]">
+                <AlertDialogHeader>
+                  <AlertDialogTitle>
+                    Tem certeza que deseja cancelar a reserva?
+                  </AlertDialogTitle>
+                  <AlertDialogDescription>
+                    A operação não pode ser desfeita após o cancelamento.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter className="flex-row">
+                  <AlertDialogCancel className="w-full mt-0">
+                    Voltar
+                  </AlertDialogCancel>
+                  <AlertDialogAction
+                    disabled={isDeleteLoading}
+                    className="w-full gap-1"
+                    onClick={handleBookingOnClick}
+                  >
+                    {isDeleteLoading && (
+                      <Loader className="mr-2 h-4 w-4 animate-spin" />
+                    )}
+                    Confirmar
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
           </SheetFooter>
         </div>
       </SheetContent>
