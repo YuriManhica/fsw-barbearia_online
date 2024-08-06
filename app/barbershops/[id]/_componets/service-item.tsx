@@ -11,17 +11,18 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/app/_components/ui/sheet";
-import { Barbershop, Service } from "@prisma/client";
+import { Barbershop, Bookings, Service } from "@prisma/client";
 import { format, setHours, setMinutes } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { Loader2 } from "lucide-react";
 import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
+import { getDayBookings } from "../_actions/get-day-bookings";
 import { saveBooking } from "../_actions/save-booking";
 import { generateDateTimeList } from "../_helpers/hours";
-import { useRouter } from "next/navigation";
 
 interface ServiceItemsProps {
   barbershop: Barbershop;
@@ -41,6 +42,21 @@ const ServiceItems = ({
   const [hour, setHour] = useState<string | undefined>();
   const [isloading, setLoading] = useState(false);
   const [sheetIsOpen, setSheetIsOpen] = useState(false);
+  const [dayBookings, setDayBookings] = useState<Bookings[]>([]);
+
+  useEffect(() => {
+    if (!date) {
+      return;
+    }
+
+    const refreshAvailableHours = async () => {
+      const _dayBookings = await getDayBookings(barbershop.id, date);
+
+      setDayBookings(_dayBookings);
+    };
+
+    refreshAvailableHours();
+  }, [date, barbershop.id]);
 
   const handleHourClick = (time: string) => {
     setHour(time);
@@ -59,8 +75,28 @@ const ServiceItems = ({
     //TODO:abrir model de agendamentos
   };
   const timelist = useMemo(() => {
-    return date ? generateDateTimeList(date) : [];
-  }, [date]);
+    if (!date) {
+      return [];
+    }
+
+    return generateDateTimeList(date).filter((time) => {
+      const timeHour = Number(time.split(":")[0]);
+      const timeMinutes = Number(time.split(":")[1]);
+
+      const booking = dayBookings.find((booking) => {
+        const bookingHour = booking.date.getHours();
+        const bookingMinutes = booking.date.getMinutes();
+
+        return bookingHour === timeHour && bookingMinutes === timeMinutes;
+      });
+
+      if (!booking) {
+        return true;
+      }
+
+      return false;
+    });
+  }, [date, dayBookings]);
 
   const handleBookingSubmit = async () => {
     setLoading(true);
