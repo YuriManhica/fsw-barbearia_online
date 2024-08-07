@@ -10,7 +10,7 @@ const Welcome = () => {
     <>
       {data?.user ? (
         <div>
-          <h2 className="text-xl font-bold">Olá, {data?.user?.name}.</h2>
+          <h2 className="text-xl font-bold">Olá, {data?.user?.name}!</h2>
           <p className="capitalize text-sm">
             {format(new Date(), "EEEE',' dd 'de' MMMM.", {
               locale: ptBR,
@@ -19,7 +19,9 @@ const Welcome = () => {
         </div>
       ) : (
         <div>
-          <h2 className="text-xl font-bold">Por favor, faça o login.</h2>
+          <h2 className="text-xl font-bold">
+            Olá, vamos agendar um corte hoje?
+          </h2>
           <p className="capitalize text-sm">
             {format(new Date(), "EEEE',' dd 'de' MMMM.", {
               locale: ptBR,

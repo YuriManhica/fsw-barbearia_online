@@ -35,15 +35,31 @@ export default async function Home() {
       <div className="px-5 mt-6">
         <Search />
       </div>
-      <div className=" mt-6">
-        <h2 className="pl-5 text-xs uppercase text-gray-400 font-bold mb-3">
-          Minhas Reservas
-        </h2>
-        <div className="px-5 flex gap-3 overflow-x-auto [&::-webkit-scrollbar]:hidden">
-          {Confirmedbookings.map((booking) => (
-            <BookingItem key={booking.id} booking={booking} />
-          ))}
-        </div>
+      <div className="mt-6">
+        {Confirmedbookings.length > 0 ? (
+          <>
+            <h2 className="pl-5 text-xs uppercase text-gray-400 font-bold mb-3">
+              Minhas Reservas
+            </h2>
+            <div className="px-5 flex gap-3 overflow-x-auto [&::-webkit-scrollbar]:hidden">
+              {Confirmedbookings.map((booking) => (
+                <BookingItem key={booking.id} booking={booking} />
+              ))}
+            </div>
+          </>
+        ) : (
+          <div className="px-5 text-gray-400 text-sm">
+            <h2 className="text-xs uppercase text-gray-400 font-bold mb-2">
+              Você não possui reservas activas.
+            </h2>
+            <p>
+              Que tal agendar seu próximo corte ou tratamento? Com vá
+              serviços exclusivos, garanta sua vaga com um de nossos talentosos
+              cabeleireiros. Estamos prontos para transformar o seu visual e
+              oferecer uma experiência incrível!
+            </p>
+          </div>
+        )}
       </div>
 
       <div className="px-5 mt-6">
