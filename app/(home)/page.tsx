@@ -1,8 +1,8 @@
 import { getServerSession } from "next-auth";
 import BookingItem from "../_components/booking-item";
 import Header from "../_components/header";
+import { authOptions } from "../_lib/auth";
 import { db } from "../_lib/prisma";
-import { authOptions } from "../api/auth/[...nextauth]/route";
 import BarberShopItem from "./_componets/barbershop-item";
 import Search from "./_componets/search";
 import Welcome from "./_componets/welcome";
@@ -53,8 +53,8 @@ export default async function Home() {
               Você não possui reservas activas.
             </h2>
             <p>
-              Que tal agendar seu próximo corte ou tratamento? Com vá
-              serviços exclusivos, garanta sua vaga com um de nossos talentosos
+              Que tal agendar seu próximo corte ou tratamento? Com vá serviços
+              exclusivos, garanta sua vaga com um de nossos talentosos
               cabeleireiros. Estamos prontos para transformar o seu visual e
               oferecer uma experiência incrível!
             </p>

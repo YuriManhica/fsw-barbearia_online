@@ -4,8 +4,8 @@ import { redirect } from "next/navigation";
 import BookingItem from "../_components/booking-item";
 import Header from "../_components/header";
 import { Button } from "../_components/ui/button";
+import { authOptions } from "../_lib/auth";
 import { db } from "../_lib/prisma";
-import { authOptions } from "../api/auth/[...nextauth]/route";
 
 const BookingsPage = async () => {
   //redireciona a sessao do usuario (ver se esta logado ou nao)
