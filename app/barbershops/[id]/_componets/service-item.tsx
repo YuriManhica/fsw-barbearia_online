@@ -12,7 +12,7 @@ import {
   SheetTrigger,
 } from "@/app/_components/ui/sheet";
 import { Barbershop, Bookings, Service } from "@prisma/client";
-import { format, setHours, setMinutes } from "date-fns";
+import { addDays, format, setHours, setMinutes } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { Loader2 } from "lucide-react";
 import { signIn, useSession } from "next-auth/react";
@@ -137,7 +137,7 @@ const ServiceItems = ({
   return (
     <Card>
       <CardContent className="p-3 w-full">
-        <div className="flex gap-4 items-center w-full">
+        <div className="flex flex-col md:flex-row gap-4 items-center w-full">
           <div className="relative min-h-[110px] max-w-[110px] min-w-[110px] max-h-[110px]">
             <Image
               className="rounded-lg"
@@ -176,26 +176,30 @@ const ServiceItems = ({
                     <SheetTitle>Fazer Reserva</SheetTitle>
                   </SheetHeader>
 
-                  <div className="py-6">
+                  <div className="py-5">
                     <Calendar
                       mode="single"
                       selected={date}
                       onSelect={handleDateChange}
                       locale={ptBR}
-                      fromDate={new Date()}
+                      fromDate={addDays(new Date(), 1)}
                       styles={{
                         head_cell: {
                           width: "100%",
+                          display: "block",
                         },
                         cell: {
                           width: "100%",
+                          display: "block",
                         },
                         button: {
                           width: "100%",
+                          display: "block",
                         },
                         nav_button_previous: {
                           width: "32px",
                           height: "32px",
+                          textAlign: "center",
                         },
                         nav_button_next: {
                           width: "32px",
@@ -207,15 +211,14 @@ const ServiceItems = ({
                       }}
                     />
                   </div>
-                  {/* Mostrar lista de horarios apenas se alguma data estiver selecionada*/}
+                  {/* Mostrar lista de horários apenas se alguma data estiver selecionada */}
                   {date && (
                     <div className="flex gap-3 overflow-x-auto py-6 px-5 border-y border-solid border-secondary [&::-webkit-scrollbar]:hidden">
                       {timelist.map((time) => (
                         <Button
                           onClick={() => handleHourClick(time)}
-                          variant={hour == time ? "default" : "outline"}
-                          className="
-                        rounded-full"
+                          variant={hour === time ? "default" : "outline"}
+                          className="rounded-full"
                           key={time}
                         >
                           {time}
