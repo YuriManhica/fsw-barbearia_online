@@ -35,13 +35,13 @@ export default async function Home() {
       <div className="px-5 mt-6">
         <Search />
       </div>
-      <div className="mt-6">
+      <div className="mt-6 ">
         {Confirmedbookings.length > 0 ? (
           <>
             <h2 className="pl-5 text-xs uppercase text-gray-400 font-bold mb-3">
               Minhas Reservas
             </h2>
-            <div className="px-5 flex gap-3 overflow-x-auto [&::-webkit-scrollbar]:hidden">
+            <div className="px-5 flex gap-3 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
               {Confirmedbookings.map((booking) => (
                 <BookingItem key={booking.id} booking={booking} />
               ))}
@@ -73,11 +73,11 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className="px-5 mt-6 mb-8">
+      <div className="px-5 mb-10 md:flex-col">
         <h2 className="px-5 text-xs mb-3 uppercase text-gray-300 font-extrabold">
           Populares
         </h2>
-        <div className="flex gap-4 overflow-x-auto [&::-webkit-scrollbar]:hidden ">
+        <div className="flex gap-4 overflow-x-auto [&::-webkit-scrollbar]:hidden md: flex-[5]">
           {barbershop.map((barbershop) => (
             <BarberShopItem key={barbershop.id} barbershop={barbershop} />
           ))}

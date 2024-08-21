@@ -21,7 +21,7 @@ const SideMenu = () => {
   const handleSignInClick = () => signIn("google");
   return (
     <>
-      <SheetHeader className="text-left border-b border-solid border-secondary p-5">
+      <SheetHeader className="text-left border-b border-solid border-secondary p-5 md:w-[50%]">
         <SheetTitle>Menu</SheetTitle>
       </SheetHeader>
 
@@ -64,12 +64,23 @@ const SideMenu = () => {
         </Button>
 
         {data?.user && (
-          <Button variant="outline" className="justify-start" asChild>
-            <Link href="/bookings">
-              <CalendarIcon size={20} className="mr-2" />
-              Agendametos
-            </Link>
-          </Button>
+          <>
+            <Button variant="outline" className="justify-start" asChild>
+              <Link href="/bookings">
+                <CalendarIcon size={20} className="mr-2" />
+                Agendametos
+              </Link>
+            </Button>
+
+            <Button
+              variant="outline"
+              onClick={handleLogOutClick}
+              className="justify-start"
+            >
+              <LogOutIcon size={20} className="mr-2" />
+              Sair
+            </Button>
+          </>
         )}
       </div>
     </>

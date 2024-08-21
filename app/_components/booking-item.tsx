@@ -62,8 +62,8 @@ const BookingItem = ({ booking }: BookingItemProps) => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Card className="w-full">
-          <CardContent className="py-0 px-0 flex ">
+        <Card className="min-w-[450px] w-[450px] sm:w-full">
+          <CardContent className="px-0 py-0 flex ">
             <div className="flex flex-col gap-2 py-5 pl-5 flex-[3]">
               <Badge
                 variant={isBookingConfirmed ? "default" : "secondary"}
@@ -72,9 +72,9 @@ const BookingItem = ({ booking }: BookingItemProps) => {
                 {isBookingConfirmed ? "Confirmado" : "Finalizado"}
               </Badge>
               <h2 className="font-bold">{booking.service.name}</h2>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-3">
                 <Avatar>
-                  <AvatarImage src="https://utfs.io/f/a55f0f39-31a0-4819-8796-538d68cc2a0f-17o.png" />
+                  <AvatarImage src={booking.barbershop.imageUrl} />
                   <AvatarFallback>{booking.barbershop.imageUrl}</AvatarFallback>
                 </Avatar>
                 <h3 className="text-sm">{booking.barbershop.name}</h3>
