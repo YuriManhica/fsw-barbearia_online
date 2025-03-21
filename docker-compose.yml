@@ -6,7 +6,7 @@ services:
     container_name: fsw-v3-postgres
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
+      POSTGRES_PASSWORD: RBSFfg2sT1yr
     ports:
       - "5432:5432"
     volumes:

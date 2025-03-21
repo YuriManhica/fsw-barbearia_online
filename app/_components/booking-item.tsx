@@ -51,7 +51,6 @@ const BookingItem = ({ booking }: BookingItemProps) => {
 
     try {
       await cancelBooking(booking.id);
-      toast.success("Reserva cancelada com sucesso!");
     } catch (error) {
       console.error(error);
     } finally {

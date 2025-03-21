@@ -1,4 +1,5 @@
 "use client";
+import { Avatar, AvatarImage } from "@/app/_components/ui/avatar";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { useSession } from "next-auth/react";
@@ -9,13 +10,18 @@ const Welcome = () => {
   return (
     <>
       {data?.user ? (
-        <div>
-          <h2 className="text-xl font-bold">Olá, {data?.user?.name}!</h2>
-          <p className="capitalize text-sm">
-            {format(new Date(), "EEEE',' dd 'de' MMMM.", {
-              locale: ptBR,
-            })}
-          </p>
+        <div className="flex justify-between items-center">
+          <div>
+            <h2 className="text-xl font-bold">Olá, {data?.user?.name}!</h2>
+            <p className="capitalize text-sm">
+              {format(new Date(), "EEEE',' dd 'de' MMMM.", {
+                locale: ptBR,
+              })}
+            </p>
+          </div>
+          <Avatar>
+            <AvatarImage src={data.user?.image ?? ""} />
+          </Avatar>
         </div>
       ) : (
         <div>
