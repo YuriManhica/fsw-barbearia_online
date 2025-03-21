@@ -34,9 +34,12 @@ const SideMenu = () => {
 
             <h2 className="font-bold">{data.user.name}</h2>
           </div>
-          <Button variant="secondary" size="icon">
-            <LogOutIcon onClick={handleLogOutClick} size={18} />
-          </Button>
+          <div className="flex">
+            <Button className="px-3 w-fit gap-1" variant="outline" size="icon">
+              Sair
+              <LogOutIcon onClick={handleLogOutClick} size={18} />
+            </Button>
+          </div>
         </div>
       ) : (
         <div className="flex flex-col px-5 p-6 gap-3">
@@ -70,15 +73,6 @@ const SideMenu = () => {
                 <CalendarIcon size={20} className="mr-2" />
                 Agendametos
               </Link>
-            </Button>
-
-            <Button
-              variant="outline"
-              onClick={handleLogOutClick}
-              className="justify-start"
-            >
-              <LogOutIcon size={20} className="mr-2" />
-              Sair
             </Button>
           </>
         )}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Footer from "./_components/footer";
+import { ThemeProvider } from "./_components/theme-provider";
 import { Toaster } from "./_components/ui/sonner";
 import AuthProvider from "./_providers/auth";
 import "./globals.css";
@@ -19,12 +20,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt">
-      <body className={`${inter.className} dark`}>
-        <AuthProvider>
-          {children}
-          <Toaster />
-          <Footer />
-        </AuthProvider>
+      <body
+        className={`${inter.className} [&::-webkit-scrollbar]:hidden 
+        `}
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <AuthProvider>
+            {children}
+            <Toaster />
+            <Footer />
+          </AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

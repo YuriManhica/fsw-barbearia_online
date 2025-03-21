@@ -6,7 +6,6 @@ import { ptBR } from "date-fns/locale";
 import { Loader } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
-import { toast } from "sonner";
 import { cancelBooking } from "../_actions/cancel-booking";
 import {
   AlertDialog,
@@ -61,7 +60,7 @@ const BookingItem = ({ booking }: BookingItemProps) => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Card className="min-w-[450px] w-[450px] sm:w-full">
+        <Card className="min-w-[450px] w-[450px] sm:w-full bg-secondary shadow-sm">
           <CardContent className="px-0 py-0 flex ">
             <div className="flex flex-col gap-2 py-5 pl-5 flex-[3]">
               <Badge

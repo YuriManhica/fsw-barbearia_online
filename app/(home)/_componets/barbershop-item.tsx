@@ -21,9 +21,9 @@ const BarberShopItem = ({ barbershop }: BarberShopItemProps) => {
   };
 
   return (
-    <Card className="min-w-[167px] max-w-[167px] rounded-2xl mb-6">
-      <CardContent className="pb-3 px-1 ">
-        <div className="h-[159px] w-full relative">
+    <Card className="min-w-[180px] max-w-[167px] rounded-2xl mb-6 ">
+      <CardContent className="pb-3 px-0 ">
+        <div className="h-[159px] w-full relative ">
           <div className="absolute top-3  left-3 z-50">
             <Badge
               variant="secondary"
@@ -41,20 +41,20 @@ const BarberShopItem = ({ barbershop }: BarberShopItemProps) => {
               objectPosition: "center",
             }}
             fill
-            className="rounded-2xl"
+            className="rounded-t-2xl shadow-lg click"
           />
         </div>
         <div className="px-3">
           <h2 className="font-bold mt-2 overflow-hidden text-ellipsis text-nowrap">
             {barbershop.name}
           </h2>
-          <p className="text-sm text-gray-400 overflow-hidden text-ellipsis text-nowrap">
+          <p className="text-sm text-gray-500 overflow-hidden text-ellipsis text-nowrap">
             {barbershop.address}
           </p>
         </div>
         <div className="flex justify-center items-center">
           <Button
-            variant="secondary"
+            variant="default"
             className="w-[90%] mt-3"
             onClick={handleBookingClick}
           >

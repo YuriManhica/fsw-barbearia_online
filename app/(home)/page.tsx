@@ -48,22 +48,16 @@ export default async function Home() {
             </div>
           </>
         ) : (
-          <div className="px-5 text-gray-400 text-sm">
-            <h2 className="text-xs uppercase text-gray-400 font-bold mb-2">
-              Você não possui reservas activas.
+          <div className="px-5 text-gray-400 text-sm flex justify-center">
+            <h2 className="text-md uppercase text-gray-600 font-bold mb-2">
+              Você ainda não possui reservas activas.
             </h2>
-            <p>
-              Que tal agendar seu próximo corte ou tratamento? Com vá serviços
-              exclusivos, garanta sua vaga com um de nossos talentosos
-              cabeleireiros. Estamos prontos para transformar o seu visual e
-              oferecer uma experiência incrível!
-            </p>
           </div>
         )}
       </div>
 
       <div className="px-5 mt-6">
-        <h2 className="px-5 text-xs mb-3 uppercase text-gray-300 font-extrabold">
+        <h2 className="px-5 text-sm mb-3 uppercase text-gray-600 font-extrabold">
           Recomendados
         </h2>
         <div className="flex gap-4 overflow-x-auto [&::-webkit-scrollbar]:hidden ">
@@ -74,7 +68,7 @@ export default async function Home() {
       </div>
 
       <div className="px-5 mb-10 md:flex-col">
-        <h2 className="px-5 text-xs mb-3 uppercase text-gray-300 font-extrabold">
+        <h2 className="px-5 text-sm mb-3 uppercase text-gray-600 font-extrabold">
           Populares
         </h2>
         <div className="flex gap-4 overflow-x-auto [&::-webkit-scrollbar]:hidden md: flex-[5]">

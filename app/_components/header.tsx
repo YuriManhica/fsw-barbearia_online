@@ -4,6 +4,7 @@ import { MenuIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import SideMenu from "./side-menu";
+import { ModeToggle } from "./theme-toogle";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
@@ -16,12 +17,14 @@ const Header = () => {
           <Image src="/logo.png" alt="FSW Barber" height={22} width={120} />
         </Link>
         <Sheet>
-          <SheetTrigger asChild>
-            <Button variant="outline" size="icon">
-              <MenuIcon size={18} />
-            </Button>
-          </SheetTrigger>
-
+          <div className="flex gap-4">
+            <ModeToggle />
+            <SheetTrigger asChild>
+              <Button variant="outline" size="icon">
+                <MenuIcon size={18} />
+              </Button>
+            </SheetTrigger>
+          </div>
           <SheetContent className="p-0">
             <SideMenu />
           </SheetContent>

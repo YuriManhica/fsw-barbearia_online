@@ -20,7 +20,7 @@ const Welcome = () => {
             </p>
           </div>
           <Avatar>
-            <AvatarImage src={data.user?.image ?? ""} />
+            <AvatarImage src={data.user?.image ?? ""} className="click" />
           </Avatar>
         </div>
       ) : (

@@ -53,7 +53,7 @@ const BarberShopInfo = ({ barbershop }: barbershopinfoProps) => {
           style={{
             objectFit: "cover",
           }}
-          className="opacity-75"
+          className="opacity-110 click"
         />
       </div>
       <div className=" px-5 pt-3 pb-6 border border-solid border-secondary">
