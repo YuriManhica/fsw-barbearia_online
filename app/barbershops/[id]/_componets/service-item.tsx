@@ -11,6 +11,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/app/_components/ui/sheet";
+
 import { Barbershop, Bookings, Service } from "@prisma/client";
 import { addDays, format, setHours, setMinutes } from "date-fns";
 import { ptBR } from "date-fns/locale";
@@ -107,7 +108,9 @@ const ServiceItems = ({
       const dateHour = Number(hour.split(":")[0]);
       const dateMinutes = Number(hour.split(":")[1]);
       const newDate = setMinutes(setHours(date, dateHour), dateMinutes);
+      // Pagar o valor dos servicos
 
+      //Salvar agendamento no banco de dados
       await saveBooking({
         barbershopId: barbershop.id,
         serviceId: service.id,
@@ -119,11 +122,15 @@ const ServiceItems = ({
       setHour(undefined);
       setDate(undefined);
       toast("Agendamento realizado com sucesso!", {
-        description: format(newDate, "'Para' dd 'de' MMMM 'as' HH':'mm.'", {
+        description: format(newDate, "'Para' dd 'de' MMMM 'às' HH':'mm.'", {
           locale: ptBR,
         }),
+        style: {
+          backgroundColor: "bg-primary",
+          color: "#fff",
+        },
         action: {
-          label: "Ir para Agendamentos",
+          label: "Ver meus Agendamentos",
           onClick: () => router.push("/bookings"),
         },
       });
@@ -163,12 +170,12 @@ const ServiceItems = ({
                   <Button onClick={handleBookingOnClick}>Reservar</Button>
                 </SheetTrigger>
 
-                <SheetContent className="p-0 ">
+                <SheetContent className="p-0 w-[90%]">
                   <SheetHeader className="text-left px-5 py-6 border-b border-solid border-secondary">
                     <SheetTitle>Fazer Reserva</SheetTitle>
                   </SheetHeader>
 
-                  <div className="py-5 md:w-fit">
+                  <div className="py-5 ">
                     <Calendar
                       mode="single"
                       selected={date}
@@ -204,8 +211,9 @@ const ServiceItems = ({
                     />
                   </div>
                   {/* Mostrar lista de horários apenas se alguma data estiver selecionada */}
+
                   {date && (
-                    <div className="flex gap-3 overflow-x-auto py-6 px-5 border-y border-solid border-secondary [&::-webkit-scrollbar]:hidden">
+                    <div className="flex overflow-x-scroll [&::-webkit-scrollbar]:hidden gap-3 py-6 px-5 border-y border-solid border-secondary ">
                       {timelist.map((time) => (
                         <Button
                           onClick={() => handleHourClick(time)}
@@ -219,7 +227,7 @@ const ServiceItems = ({
                     </div>
                   )}
 
-                  <div className="py-6">
+                  <div className="py-6 px-4">
                     <Card>
                       <CardContent className="p-4 gap-3 flex flex-col">
                         <div className="flex justify-between">

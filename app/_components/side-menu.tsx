@@ -3,22 +3,43 @@
 import {
   CalendarIcon,
   HomeIcon,
-  LogInIcon,
+  LoaderIcon,
   LogOutIcon,
   UserIcon,
 } from "lucide-react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import { useState } from "react";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
 import { SheetHeader, SheetTitle } from "./ui/sheet";
 
 const SideMenu = () => {
   const { data } = useSession();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogOutClick = () => signOut();
+  const handleLogOutClick = async () => {
+    setIsLoading(true); // Ativa o loading
+    try {
+      await signOut(); // Aguarda o logout ser concluído
+    } catch (error) {
+      console.error("Erro ao sair:", error);
+    } finally {
+      setIsLoading(false); // Desativa o loading, independentemente do sucesso ou erro
+    }
+  };
 
-  const handleSignInClick = () => signIn("google");
+  const handleSignInClick = async () => {
+    setIsLoading(true); // Ativa o loading
+    try {
+      await signIn("google"); // Aguarda o logout ser concluído
+    } catch (error) {
+      console.error("Erro ao sair:", error);
+    } finally {
+      setIsLoading(false); // Desativa o loading, independentemente do sucesso ou erro
+    }
+  };
+
   return (
     <>
       <SheetHeader className="text-left border-b border-solid border-secondary p-5 md:w-[50%]">
@@ -35,9 +56,18 @@ const SideMenu = () => {
             <h2 className="font-bold">{data.user.name}</h2>
           </div>
           <div className="flex">
-            <Button className="px-3 w-fit gap-1" variant="outline" size="icon">
+            <Button
+              onClick={handleLogOutClick}
+              className="px-3 w-fit gap-1"
+              variant="outline"
+              size="icon"
+            >
               Sair
-              <LogOutIcon onClick={handleLogOutClick} size={18} />
+              {isLoading ? (
+                <LoaderIcon className="animate-spin" size={18} />
+              ) : (
+                <LogOutIcon size={18} />
+              )}
             </Button>
           </div>
         </div>
@@ -52,7 +82,11 @@ const SideMenu = () => {
             className="w[90%] gap-2 justify-start"
             onClick={handleSignInClick}
           >
-            <LogInIcon className="mr-2" size={18} />
+            {isLoading ? (
+              <LoaderIcon className="animate-spin" size={18} />
+            ) : (
+              <LogOutIcon size={18} />
+            )}
             Fazer Login
           </Button>
         </div>

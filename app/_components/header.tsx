@@ -11,7 +11,7 @@ import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 
 const Header = () => {
   return (
-    <Card>
+    <Card className="rounded-none shadow-sm">
       <CardContent className="p-5 flex justify-between flex-row items-center">
         <Link href="/">
           <Image src="/logo.png" alt="FSW Barber" height={22} width={120} />

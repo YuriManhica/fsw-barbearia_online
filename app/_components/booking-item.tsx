@@ -60,12 +60,12 @@ const BookingItem = ({ booking }: BookingItemProps) => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Card className="min-w-[450px] w-[450px] sm:w-full bg-secondary shadow-sm">
-          <CardContent className="px-0 py-0 flex ">
-            <div className="flex flex-col gap-2 py-5 pl-5 flex-[3]">
+        <Card className="shadow-sm">
+          <CardContent className="px-0 py-0 flex">
+            <div className="flex flex-col gap-2 py-5 px-5 flex-[3]">
               <Badge
                 variant={isBookingConfirmed ? "default" : "secondary"}
-                className="w-fit"
+                className="w-fit cursor-pointer"
               >
                 {isBookingConfirmed ? "Confirmado" : "Finalizado"}
               </Badge>
@@ -75,17 +75,22 @@ const BookingItem = ({ booking }: BookingItemProps) => {
                   <AvatarImage src={booking.barbershop.imageUrl} />
                   <AvatarFallback>{booking.barbershop.imageUrl}</AvatarFallback>
                 </Avatar>
-                <h3 className="text-sm">{booking.barbershop.name}</h3>
+                <div className="overflow-hidden text-ellipsis text-nowrap w-fit">
+                  <h3 className="text-sm">{booking.barbershop.name}</h3>
+                  <h4 className="text-xs text-gray-400 ">
+                    {booking.barbershop.address}
+                  </h4>
+                </div>
               </div>
             </div>
-
-            <div className="flex items-center flex-col justify-center flex-1 border-l border-solid border-secondary ">
+            <div className="flex items-center flex-col px-2 justify-center flex-1 border-l border-solid border-secondary ">
               <p className="text-sm capitalize">
                 {format(booking.date, "MMMM", {
                   locale: ptBR,
                 })}
               </p>
               <p className="text-2xl">{format(booking.date, "dd")}</p>
+              <p className="text-sm">{format(booking.date, "yyyy")}</p>
               <p className="text-sm">{format(booking.date, "HH:mm")}</p>
             </div>
           </CardContent>
@@ -105,7 +110,7 @@ const BookingItem = ({ booking }: BookingItemProps) => {
               fill
               alt={booking.barbershop.name}
             />
-            <div className="w-full absolute bottom-4 left-0 px-5">
+            <div className="w-fit absolute bottom-4 left-0 right-0 mx-auto ">
               <Card>
                 <CardContent className="p-3 flex gap-3">
                   <Avatar>
@@ -113,7 +118,7 @@ const BookingItem = ({ booking }: BookingItemProps) => {
                   </Avatar>
 
                   <div>
-                    <h2 className="font-bold">{booking.barbershop.name}</h2>
+                    <h2 className="font-bold ">{booking.barbershop.name}</h2>
                     <h3 className="text-xs overflow-hidden text-ellipsis text-nowrap">
                       {booking.barbershop.address}
                     </h3>
@@ -143,9 +148,9 @@ const BookingItem = ({ booking }: BookingItemProps) => {
 
               {booking.date && (
                 <div className="flex justify-between">
-                  <h3 className="text-gray-400 text-sm">Data:</h3>
+                  <h3 className=" text-sm">Data:</h3>
                   <h4 className="text-sm ">
-                    {format(booking.date, "dd 'de' MMMM", {
+                    {format(booking.date, "dd 'de' MMMM 'de' yyyy", {
                       locale: ptBR,
                     })}
                   </h4>
@@ -154,18 +159,18 @@ const BookingItem = ({ booking }: BookingItemProps) => {
 
               {booking.date && (
                 <div className="flex justify-between">
-                  <h3 className="text-gray-400 text-sm">Horas:</h3>
+                  <h3 className="text-sm">Horas:</h3>
                   <h4 className="text-sm ">{format(booking.date, "HH:mm")}</h4>
                 </div>
               )}
               <div className="flex justify-between">
-                <h3 className="text-gray-400 text-sm">Barbearia:</h3>
+                <h3 className=" text-sm">Barbearia:</h3>
                 <h4 className="text-sm ">{booking.barbershop.name}</h4>
               </div>
             </CardContent>
           </Card>
 
-          <SheetFooter className="flex-row w-full mt-6 gap-1">
+          <SheetFooter className="flex-row w-full mt-6 gap-4">
             <SheetClose asChild>
               <Button className="w-full">Voltar</Button>
             </SheetClose>

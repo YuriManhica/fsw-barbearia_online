@@ -57,7 +57,7 @@ const BookingsPage = async () => {
       <div className="px-5 py-6 mb-12">
         {confirmedBookings.length <= 0 && finishedBookings.length <= 0 && (
           <>
-            <h1 className="text-xl font-bold">Sem Agendamentos no Momento?</h1>
+            <h1 className="text-xl font-bold">Sem Agendamentos no Momento!</h1>
             <h2 className="mt-6 mb-3 text-gray-400 font-bold text-sm">
               Aproveite essa oportunidade para agendar agora e desfrutar dos
               nossos serviços excepcionais! Não perca tempo, reserve já e
@@ -75,8 +75,8 @@ const BookingsPage = async () => {
 
         {confirmedBookings.length > 0 && (
           <>
-            <h2 className="mt-6 mb-3 text-gray-400 uppercase font-bold text-sm">
-              Confirmados
+            <h2 className="mt-6 mb-3 w-fit rounded-sm px-4 uppercase font-bold text-xs bg-primary text-white py-2 cursor-pointer text-center">
+              Pedidos Confirmados
             </h2>
 
             <div className="flex flex-col gap-3">
@@ -89,11 +89,11 @@ const BookingsPage = async () => {
 
         {finishedBookings.length > 0 && (
           <>
-            <h2 className="mt-6 mb-3 text-gray-400 uppercase font-bold text-sm">
-              Finalizados
+            <h2 className="mt-6 mb-3 border-transparent bg-secondary text-gray-400 hover:bg-secondary/80 w-fit rounded-sm px-4 uppercase font-bold text-xs py-2 cursor-pointer text-center">
+              Pedidos Finalizados
             </h2>
 
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 w-full">
               {finishedBookings.map((booking) => (
                 <BookingItem key={booking.id} booking={booking} />
               ))}
