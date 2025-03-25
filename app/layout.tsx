@@ -33,7 +33,7 @@ export default function RootLayout({
           <AuthProvider>
             {children}
             <Toaster />
-            <div className="mt-16">
+            <div className="mt-16 z-50">
               <Footer />
             </div>
           </AuthProvider>
