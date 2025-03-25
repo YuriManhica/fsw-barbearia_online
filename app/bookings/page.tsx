@@ -54,9 +54,9 @@ const BookingsPage = async () => {
     <>
       <Header />
 
-      <div className="px-5 py-6 mb-12">
+      <div className="py-6 mb-12 w-full">
         {confirmedBookings.length <= 0 && finishedBookings.length <= 0 && (
-          <>
+          <div className="px-4">
             <h1 className="text-xl font-bold">Sem Agendamentos no Momento!</h1>
             <h2 className="mt-6 mb-3 text-gray-400 font-bold text-sm">
               Aproveite essa oportunidade para agendar agora e desfrutar dos
@@ -66,16 +66,16 @@ const BookingsPage = async () => {
             <Link href="/">
               <Button className="w-[100px] mt-6">Voltar</Button>
             </Link>
-          </>
+          </div>
         )}
 
         {(confirmedBookings.length > 0 || finishedBookings.length > 0) && (
-          <h1 className="text-xl font-bold">Agendamentos</h1>
+          <h1 className="text-xl font-bold px-4">Agendamentos</h1>
         )}
 
         {confirmedBookings.length > 0 && (
-          <>
-            <h2 className="mt-6 mb-3 w-fit rounded-sm px-4 uppercase font-bold text-xs bg-primary text-white py-2 cursor-pointer text-center">
+          <div className="px-4">
+            <h2 className="mt-6 mb-3 w-fit px-4 rounded-sm  uppercase font-bold text-xs bg-primary text-white py-2 cursor-pointer text-center">
               Pedidos Confirmados
             </h2>
 
@@ -84,7 +84,7 @@ const BookingsPage = async () => {
                 <BookingItem key={booking.id} booking={booking} />
               ))}
             </div>
-          </>
+          </div>
         )}
 
         {finishedBookings.length > 0 && (

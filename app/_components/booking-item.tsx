@@ -60,30 +60,32 @@ const BookingItem = ({ booking }: BookingItemProps) => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Card className="shadow-sm">
+        <Card className="shadow-sm sm:w-full">
           <CardContent className="px-0 py-0 flex">
-            <div className="flex flex-col gap-2 py-5 px-5 flex-[3]">
+            <div className="flex flex-col gap-2 py-5 px-2 whitespace-nowrap text-ellipsis truncate sm:flex-[3] flex-[2]">
               <Badge
                 variant={isBookingConfirmed ? "default" : "secondary"}
-                className="w-fit cursor-pointer"
+                className="w-fit cursor-pointer "
               >
                 {isBookingConfirmed ? "Confirmado" : "Finalizado"}
               </Badge>
               <h2 className="font-bold">{booking.service.name}</h2>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 ">
                 <Avatar>
                   <AvatarImage src={booking.barbershop.imageUrl} />
                   <AvatarFallback>{booking.barbershop.imageUrl}</AvatarFallback>
                 </Avatar>
-                <div className="overflow-hidden text-ellipsis text-nowrap w-fit">
-                  <h3 className="text-sm">{booking.barbershop.name}</h3>
-                  <h4 className="text-xs text-gray-400 ">
+                <div className="overflow-hidden  whitespace-nowrap w-fit">
+                  <h3 className="text-sm text-ellipsis truncate">
+                    {booking.barbershop.name}
+                  </h3>
+                  <h4 className="text-xs text-gray-400 text-ellipsis truncate">
                     {booking.barbershop.address}
                   </h4>
                 </div>
               </div>
             </div>
-            <div className="flex items-center flex-col px-2 justify-center flex-1 border-l border-solid border-secondary ">
+            <div className="flex items-center flex-col sm:px-2 justify-center flex-1 border-l border-solid border-secondary ">
               <p className="text-sm capitalize">
                 {format(booking.date, "MMMM", {
                   locale: ptBR,
@@ -96,7 +98,7 @@ const BookingItem = ({ booking }: BookingItemProps) => {
           </CardContent>
         </Card>
       </SheetTrigger>
-      <SheetContent className="px-0">
+      <SheetContent className="px-0 w-[90%]">
         <SheetHeader className="px-5 text-left pb-6 border-b border-solid border-secondary">
           <SheetTitle>
             {isBookingConfirmed ? "Detalhe da Reserva" : "Reserva Finalizada"}
@@ -110,16 +112,18 @@ const BookingItem = ({ booking }: BookingItemProps) => {
               fill
               alt={booking.barbershop.name}
             />
-            <div className="w-fit absolute bottom-4 left-0 right-0 mx-auto ">
+            <div className="w-full absolute bottom-4 left-0 right-0 px-4">
               <Card>
-                <CardContent className="p-3 flex gap-3">
+                <CardContent className="p-3 flex gap-3 justify-center">
                   <Avatar>
                     <AvatarImage src={booking.barbershop.imageUrl} />
                   </Avatar>
 
-                  <div>
-                    <h2 className="font-bold ">{booking.barbershop.name}</h2>
-                    <h3 className="text-xs overflow-hidden text-ellipsis text-nowrap">
+                  <div className="whitespace-nowrap overflow-hidden ">
+                    <h2 className="font-bold text-ellipsis truncate">
+                      {booking.barbershop.name}
+                    </h2>
+                    <h3 className="text-xs text-ellipsis truncate">
                       {booking.barbershop.address}
                     </h3>
                   </div>
@@ -163,9 +167,11 @@ const BookingItem = ({ booking }: BookingItemProps) => {
                   <h4 className="text-sm ">{format(booking.date, "HH:mm")}</h4>
                 </div>
               )}
-              <div className="flex justify-between">
+              <div className="flex justify-between gap-5">
                 <h3 className=" text-sm">Barbearia:</h3>
-                <h4 className="text-sm ">{booking.barbershop.name}</h4>
+                <h4 className="text-sm whitespace-nowrap overflow-hidden text-ellipsis truncate">
+                  {booking.barbershop.name}
+                </h4>
               </div>
             </CardContent>
           </Card>
