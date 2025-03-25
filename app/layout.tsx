@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="pt">
       <body
-        className={`${inter.className} [&::-webkit-scrollbar]:hidden 
+        className={`${inter.className} 
         `}
       >
         <ThemeProvider
