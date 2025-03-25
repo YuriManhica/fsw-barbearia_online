@@ -17,7 +17,7 @@ const Header = () => {
           <Image src="/logotipo.png" alt="FSW Barber" height={22} width={120} />
         </Link>
         <Sheet>
-          <div className="flex gap-4">
+          <div className=" flex gap-4">
             <ModeToggle />
             <SheetTrigger asChild>
               <Button variant="outline" size="icon">
@@ -25,7 +25,7 @@ const Header = () => {
               </Button>
             </SheetTrigger>
           </div>
-          <SheetContent className="p-0">
+          <SheetContent className="p-0 w-[90%]">
             <SideMenu />
           </SheetContent>
         </Sheet>

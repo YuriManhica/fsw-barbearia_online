@@ -74,12 +74,11 @@ const BookingsPage = async () => {
         )}
 
         {confirmedBookings.length > 0 && (
-          <div className="px-4">
+          <div className="px-4 ">
             <h2 className="mt-6 mb-3 w-fit px-4 rounded-sm  uppercase font-bold text-xs bg-primary text-white py-2 cursor-pointer text-center">
               Pedidos Confirmados
             </h2>
-
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 md:grid md:grid-cols-2">
               {confirmedBookings.map((booking) => (
                 <BookingItem key={booking.id} booking={booking} />
               ))}
@@ -88,17 +87,16 @@ const BookingsPage = async () => {
         )}
 
         {finishedBookings.length > 0 && (
-          <>
+          <div className="px-4">
             <h2 className="mt-6 mb-3 border-transparent bg-secondary text-gray-400 hover:bg-secondary/80 w-fit rounded-sm px-4 uppercase font-bold text-xs py-2 cursor-pointer text-center">
               Pedidos Finalizados
             </h2>
-
-            <div className="flex flex-col gap-3 w-full">
+            <div className="flex md:grid md:grid-cols-2 flex-col gap-3 xl:grid-cols-3 w-full">
               {finishedBookings.map((booking) => (
                 <BookingItem key={booking.id} booking={booking} />
               ))}
             </div>
-          </>
+          </div>
         )}
       </div>
     </>

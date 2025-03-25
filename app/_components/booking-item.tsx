@@ -105,7 +105,7 @@ const BookingItem = ({ booking }: BookingItemProps) => {
           </SheetTitle>
         </SheetHeader>
 
-        <div className="px-5">
+        <div className="px-8 md:px-4">
           <div className="relative h-[200px] w-full mt-6">
             <Image
               src="/barbershop-map.png"
@@ -176,15 +176,15 @@ const BookingItem = ({ booking }: BookingItemProps) => {
             </CardContent>
           </Card>
 
-          <SheetFooter className="flex-row w-full mt-6 gap-4">
+          <SheetFooter className="flex-row justify-center w-full mt-6 gap-4">
             <SheetClose asChild>
-              <Button className="w-full">Voltar</Button>
+              <Button className="w-[50%]">Voltar</Button>
             </SheetClose>
             <AlertDialog>
               <AlertDialogTrigger asChild>
                 <Button
                   disabled={!isBookingConfirmed || isDeleteLoading}
-                  className="w-full"
+                  className="w-[50%]"
                   variant="destructive"
                 >
                   {isDeleteLoading && (
@@ -193,7 +193,7 @@ const BookingItem = ({ booking }: BookingItemProps) => {
                   Cancelar Reserva
                 </Button>
               </AlertDialogTrigger>
-              <AlertDialogContent className="w-[90%]">
+              <AlertDialogContent className="w-[80%]">
                 <AlertDialogHeader>
                   <AlertDialogTitle>
                     Tem certeza que deseja cancelar a reserva?
@@ -202,7 +202,7 @@ const BookingItem = ({ booking }: BookingItemProps) => {
                     A operação não pode ser desfeita após o cancelamento.
                   </AlertDialogDescription>
                 </AlertDialogHeader>
-                <AlertDialogFooter className="flex-row">
+                <AlertDialogFooter className="flex-row gap-2">
                   <AlertDialogCancel className="w-full mt-0">
                     Voltar
                   </AlertDialogCancel>
