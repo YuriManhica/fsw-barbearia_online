@@ -33,10 +33,15 @@ const Barbershops = () => {
     <>
       <Header />
       <div className="px-5 py-6 ">
-        <h2 className="mb-6 text-lg font-semibold">Barbearias Encontrados</h2>
-        <div className="flex flex-col gap-6 md:grid md:grid-cols-2 md:gap-8 xl:grid-cols-3">
-          {barbershop.map((barbershops) => (
-            <BarbershopItem key={barbershops.id} barbershop={barbershops} />
+        <h1 className="text-2xl font-bold mb-2">Resultados da Busca!</h1>
+        {barbershop.length <= 0 && (
+          <h1 className="text-sm font-bold -mb-2">
+            Nenhuma Barbearia encontrada!
+          </h1>
+        )}
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {barbershop.map((barbershop) => (
+            <BarbershopItem key={barbershop.id} barbershop={barbershop} />
           ))}
         </div>
       </div>
