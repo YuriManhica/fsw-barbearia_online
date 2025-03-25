@@ -55,7 +55,7 @@ export default async function Home() {
             <h2 className="pl-5 text-sm uppercase font-bold mb-3">
               Minhas Reservas
             </h2>
-            <div className="px-3 flex gap-3 overflow-x-auto max-w-[500px] w-full [&::-webkit-scrollbar]:hidden">
+            <div className="px-3 flex gap-3 overflow-x-scroll  w-full [&::-webkit-scrollbar]:hidden">
               {ConfirmedBookings.map((booking) => (
                 <BookingItem key={booking.id} booking={booking} />
               ))}

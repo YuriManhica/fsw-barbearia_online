@@ -143,8 +143,8 @@ const ServiceItems = ({
 
   return (
     <Card>
-      <CardContent className="p-0 h-full w-full">
-        <div className="flex flex-col p-4 md:flex-row justify-center w-fit">
+      <CardContent className="p-0 h-full w-full ">
+        <div className="flex flex-col p-4 justify-center w-fit">
           <div className="flex gap-4  w-full items-center">
             <div className="relative min-h-[110px] min-w-[140px] h-full w-full">
               <Image
