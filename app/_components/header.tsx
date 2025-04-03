@@ -15,7 +15,7 @@ const Header = () => {
       <CardContent className="p-5 flex justify-between flex-row items-center">
         <Link href="/">
           <div className="bungee text-2xl flex gap-2">
-            <h1 className="text-primary">Barb'r</h1>
+            <h1 className="text-primary">Barb&apos;r</h1>
             Hub
           </div>
           {/* <Image 
