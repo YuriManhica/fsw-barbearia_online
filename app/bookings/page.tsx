@@ -6,6 +6,7 @@ import Header from "../_components/header";
 import { Button } from "../_components/ui/button";
 import { authOptions } from "../_lib/auth";
 import { db } from "../_lib/prisma";
+import PaymentButton from "./_componets/payment-buttom";
 
 const BookingsPage = async () => {
   //redireciona a sessao do usuario (ver se esta logado ou nao)
@@ -83,6 +84,7 @@ const BookingsPage = async () => {
                 <BookingItem key={booking.id} booking={booking} />
               ))}
             </div>
+            <PaymentButton />
           </div>
         )}
 

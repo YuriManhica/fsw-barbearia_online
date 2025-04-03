@@ -114,7 +114,7 @@ const BookingItem = ({ booking }: BookingItemProps) => {
             />
             <div className="w-full absolute bottom-4 left-0 right-0 px-4">
               <Card>
-                <CardContent className="p-3 flex gap-3 justify-center">
+                <CardContent className="p-3 flex gap-4 justify-center">
                   <Avatar>
                     <AvatarImage src={booking.barbershop.imageUrl} />
                   </Avatar>
@@ -176,7 +176,7 @@ const BookingItem = ({ booking }: BookingItemProps) => {
             </CardContent>
           </Card>
 
-          <SheetFooter className="flex-row justify-center w-full mt-6 gap-4">
+          <SheetFooter className="flex-row justify-center w-full mt-6 gap-4 ">
             <SheetClose asChild>
               <Button className="w-[50%]">Voltar</Button>
             </SheetClose>
@@ -184,7 +184,7 @@ const BookingItem = ({ booking }: BookingItemProps) => {
               <AlertDialogTrigger asChild>
                 <Button
                   disabled={!isBookingConfirmed || isDeleteLoading}
-                  className="w-[50%]"
+                  className="w-[50%] "
                   variant="destructive"
                 >
                   {isDeleteLoading && (

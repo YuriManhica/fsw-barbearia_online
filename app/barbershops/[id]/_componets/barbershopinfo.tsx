@@ -21,7 +21,7 @@ const BarberShopInfo = ({ barbershop }: barbershopinfoProps) => {
 
   return (
     <div>
-      <div className="h-[250px] w-full relative">
+      <div className="min-h-[250px] md:h-[400px] lg:h-[500px]  xl:h-150 w-full relative">
         <Button
           size="icon"
           variant="outline"
@@ -50,17 +50,18 @@ const BarberShopInfo = ({ barbershop }: barbershopinfoProps) => {
           src={barbershop.imageUrl}
           fill
           alt={barbershop.name}
+          quality={100}
           style={{
             objectFit: "cover",
           }}
-          className="opacity-110 click"
+          className="opacity-110 "
         />
       </div>
       <div className=" px-5 pt-3 pb-6 border border-solid border-secondary">
         <h1 className="text-xl font-bold">{barbershop.name}</h1>
         <div className="flex items-center gap-1 mt-2">
           <MapPinIcon className="fill-primary text-secondary" size={20} />
-          <p className="text-sm">{barbershop.address}</p>
+          <p className="text-sm">{barbershop.address}.</p>
         </div>
         <div className="flex items-center gap-[0.438rem] mt-2">
           <StarIcon className="fill-primary text-primary" size={17} />

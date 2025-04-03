@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -26,6 +25,8 @@ model Barbershop {
   name     String
   address  String
   imageUrl String
+  phone    String
+  email    String
   services Service[]
   bookings Bookings[]
 }

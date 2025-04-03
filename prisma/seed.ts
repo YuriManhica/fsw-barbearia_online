@@ -4,57 +4,91 @@ const prisma = new PrismaClient();
 
 async function seedDatabase() {
   try {
-    const images = [
-      "https://utfs.io/f/c97a2dc9-cf62-468b-a851-bfd2bdde775f-16p.png",
-      "https://utfs.io/f/45331760-899c-4b4b-910e-e00babb6ed81-16q.png",
-      "https://utfs.io/f/5832df58-cfd7-4b3f-b102-42b7e150ced2-16r.png",
-      "https://utfs.io/f/7e309eaa-d722-465b-b8b6-76217404a3d3-16s.png",
-      "https://utfs.io/f/178da6b6-6f9a-424a-be9d-a2feb476eb36-16t.png",
-      "https://utfs.io/f/2f9278ba-3975-4026-af46-64af78864494-16u.png",
-      "https://utfs.io/f/988646ea-dcb6-4f47-8a03-8d4586b7bc21-16v.png",
-      "https://utfs.io/f/60f24f5c-9ed3-40ba-8c92-0cd1dcd043f9-16w.png",
-      "https://utfs.io/f/f64f1bd4-59ce-4ee3-972d-2399937eeafc-16x.png",
-      "https://utfs.io/f/e995db6d-df96-4658-99f5-11132fd931e1-17j.png",
-      "https://utfs.io/f/3bcf33fc-988a-462b-8b98-b811ee2bbd71-17k.png",
-      "https://utfs.io/f/5788be0e-2307-4bb4-b603-d9dd237950a2-17l.png",
-      "https://utfs.io/f/6b0888f8-b69f-4be7-a13b-52d1c0c9cab2-17m.png",
-      "https://utfs.io/f/ef45effa-415e-416d-8c4a-3221923cd10f-17n.png",
-      "https://utfs.io/f/ef45effa-415e-416d-8c4a-3221923cd10f-17n.png",
-      "https://utfs.io/f/a55f0f39-31a0-4819-8796-538d68cc2a0f-17o.png",
-      "https://utfs.io/f/5c89f046-80cd-4443-89df-211de62b7c2a-17p.png",
-      "https://utfs.io/f/23d9c4f7-8bdb-40e1-99a5-f42271b7404a-17q.png",
-      "https://utfs.io/f/9f0847c2-d0b8-4738-a673-34ac2b9506ec-17r.png",
-      "https://utfs.io/f/07842cfb-7b30-4fdc-accc-719618dfa1f2-17s.png",
-      "https://utfs.io/f/0522fdaf-0357-4213-8f52-1d83c3dcb6cd-18e.png",
-    ];
-    // Nomes criativos para as barbearias
-    const creativeNames = [
-      "Barbearia Vintage",
-      "Corte & Estilo",
-      "Barba & Navalha",
-      "The Dapper Den",
-      "Cabelo & Cia.",
-      "Machado & Tesoura",
-      "Barbearia Elegance",
-      "Aparência Impecável",
-      "Estilo Urbano",
-      "Estilo Clássico",
+    // Barbearias com e-mails profissionais
+    const barbershops = [
+      {
+        name: "Barbearia Zizou",
+        address: "Avenida Josina Machel, Maputo.",
+        imageUrl:
+          "https://dbmib2q8rj.ufs.sh/f/Lm6xK3J7O1CLm9C9GfNpBi2n8AQDuF9koMjeOVz07yHcqLEX",
+        email: "reservas@zizoubarber.co.mz",
+        phone: "+258 86 456 7890",
+      },
+      {
+        name: "Zulu's BarberShop",
+        address: "Avenida Dom Alexandre, Mahotas, Maputo.",
+        imageUrl:
+          "https://dbmib2q8rj.ufs.sh/f/Lm6xK3J7O1CLjaYGRSdoAFPm5kCJVeXv3Y0HSxMQKynB7dDW",
+        email: "agendamento@zulubarber.co.mz",
+        phone: "+258 85 890 1234",
+      },
+      {
+        name: "Tsemeta Barber Shop",
+        address: "Localizada em Marracuene, Bairro Mateque.",
+        imageUrl:
+          "https://dbmib2q8rj.ufs.sh/f/Lm6xK3J7O1CLcSCX2aguPCISKz5DU0Eh4gfrYdp6TmlGQoAk",
+        email: "cortes@tsemetabarber.co.mz",
+        phone: "+258 87 012 3456",
+      },
+      {
+        name: "Barber Shopline",
+        address: "Avenida Albert Lithuli, Maputo.",
+        imageUrl:
+          "https://dbmib2q8rj.ufs.sh/f/Lm6xK3J7O1CLS2P4IMinBUFVa3E5ZLsrN8pzkOCqdexR0gXc",
+        email: "contato@shoplinebarber.co.mz",
+        phone: "+258 84 678 9012",
+      },
+      {
+        name: "Sexy Hair",
+        address: "Avenida Vladimir Lenine, nº 459, Maputo.",
+        imageUrl:
+          "https://dbmib2q8rj.ufs.sh/f/Lm6xK3J7O1CLP0JOtm63tmIJLPASQKWOFMsw4ev6EHqjy7hD",
+        email: "estilo@sexyhair.co.mz",
+        phone: "+258 85 345 6789",
+      },
+      {
+        name: "Barbearia Salão Azul Chimunuane",
+        address: "Avenida Vladimir Lenine, nº 459, Maputo",
+        imageUrl:
+          "https://dbmib2q8rj.ufs.sh/f/Lm6xK3J7O1CLJwqMrJs1xWgCzZfL4tSjVnAhNwIKdypBE92v",
+        email: "salaoazul@chimunuane.co.mz",
+        phone: "+258 82 234 5678",
+      },
+      {
+        name: "Tchetcho's Barber Shop",
+        address: "Avenida Salvador Allende",
+        imageUrl:
+          "https://dbmib2q8rj.ufs.sh/f/Lm6xK3J7O1CLEGmTDXbWBDrHNlkZ671oFJq2IfGUwCjyX83S",
+        email: "tchetcho@barber.co.mz",
+        phone: "+258 86 901 2345",
+      },
+      {
+        name: "Oficina de Cortes Mandrax",
+        address: "Avenida Amílcar Cabral, Maputo.",
+        imageUrl:
+          "https://dbmib2q8rj.ufs.sh/f/Lm6xK3J7O1CL7dQ400J2QfLWFqYERTJxVjehCtgy89BmbnPi",
+        email: "oficina@mandraxbarber.co.mz",
+        phone: "+258 82 789 0123",
+      },
+      {
+        name: "Leo's Barber Shop",
+        address: "Avenida Albert Lithuli, Maputo.",
+        imageUrl:
+          "https://dbmib2q8rj.ufs.sh/f/Lm6xK3J7O1CL2oTGESjAJn7hlrUqQvfDOKPc6d5iXeTBWp9u",
+        email: "leo@barbershop.co.mz",
+        phone: "+258 87 567 8901",
+      },
+      {
+        name: "Gentleman's Barber Shop",
+        address: "Avenida Ahmed Sekou Touré, nº 409, Maputo",
+        imageUrl:
+          "https://dbmib2q8rj.ufs.sh/f/Lm6xK3J7O1CL2idJf4jAJn7hlrUqQvfDOKPc6d5iXeTBWp9u",
+        email: "gentleman@barber.co.mz",
+        phone: "+258 84 123 4567",
+      },
     ];
 
-    // Endereços fictícios para as barbearias
-    const addresses = [
-      "Rua da Barbearia, 123",
-      "Avenida dos Cortes, 456",
-      "Praça da Barba, 789",
-      "Travessa da Navalha, 101",
-      "Alameda dos Estilos, 202",
-      "Estrada do Machado, 303",
-      "Avenida Elegante, 404",
-      "Praça da Aparência, 505",
-      "Rua Urbana, 606",
-      "Avenida Clássica, 707",
-    ];
-
+    // Serviços com imagens
     const services = [
       {
         name: "Corte de Cabelo",
@@ -100,44 +134,38 @@ async function seedDatabase() {
       },
     ];
 
-    // Criar 10 barbearias com nomes e endereços fictícios
-    const barbershops = [];
-    for (let i = 0; i < 10; i++) {
-      const name = creativeNames[i];
-      const address = addresses[i];
-      const imageUrl = images[i];
-
-      const barbershop = await prisma.barbershop.create({
+    // Criar barbearias e serviços
+    for (const shop of barbershops) {
+      const createdShop = await prisma.barbershop.create({
         data: {
-          name,
-          address,
-          imageUrl: imageUrl,
+          name: shop.name,
+          address: shop.address,
+          imageUrl: shop.imageUrl,
+          email: shop.email,
+          phone: shop.phone,
         },
       });
 
+      // Criar serviços para cada barbearia
       for (const service of services) {
         await prisma.service.create({
           data: {
             name: service.name,
             description: service.description,
             price: service.price,
-            barbershop: {
-              connect: {
-                id: barbershop.id,
-              },
-            },
             imageUrl: service.imageUrl,
+            barbershop: { connect: { id: createdShop.id } },
           },
         });
       }
-
-      barbershops.push(barbershop);
     }
 
-    // Fechar a conexão com o banco de dados
+    console.log("Seed concluído com sucesso!");
     await prisma.$disconnect();
   } catch (error) {
-    console.error("Erro ao criar as barbearias:", error);
+    console.error("Erro ao executar o seed:", error);
+    await prisma.$disconnect();
+    process.exit(1);
   }
 }
 

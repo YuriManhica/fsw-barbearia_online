@@ -11,7 +11,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/app/_components/ui/sheet";
-
 import { Barbershop, Bookings, Service } from "@prisma/client";
 import { addDays, format, setHours, setMinutes } from "date-fns";
 import { ptBR } from "date-fns/locale";
@@ -121,6 +120,7 @@ const ServiceItems = ({
       setSheetIsOpen(false);
       setHour(undefined);
       setDate(undefined);
+      // sendEmail(data.user.email);
       toast("Agendamento realizado com sucesso!", {
         description: format(newDate, "'Para' dd 'de' MMMM 'às' HH':'mm.'", {
           locale: ptBR,
@@ -143,7 +143,7 @@ const ServiceItems = ({
 
   return (
     <Card>
-      <CardContent className="p-0 h-full w-full ">
+      <CardContent className="p-0 h-full xl:h-60 w-full flex justify-center">
         <div className="flex flex-col p-4 justify-center w-fit">
           <div className="flex gap-4  w-full items-center">
             <div className="relative min-h-[110px] min-w-[140px] h-full w-full">
@@ -161,20 +161,21 @@ const ServiceItems = ({
             </div>
           </div>
           <div className="flex items-center flex-row-reverse w-full justify-around mt-3">
-            <p className="text-sm font-bold  uppercase">
-              Preço:{" "}
-              <span className="text-primary">
-                {Intl.NumberFormat("pt-MZ", {
-                  style: "currency",
-                  currency: "MZN",
-                }).format(Number(service.price))}
-              </span>
-            </p>
             <Sheet open={sheetIsOpen} onOpenChange={setSheetIsOpen}>
               <SheetTrigger asChild>
-                <Button onClick={handleBookingOnClick} className="w-[50%]">
-                  Reservar
-                </Button>
+                <div className="w-full flex justify-between items-center px-2 border rounded-r-3xl py-1 cursor-pointer">
+                  <p className="text-md mt-1 font-bold pl-3">
+                    Preço:{" "}
+                    {Intl.NumberFormat("pt-MZ", {
+                      style: "currency",
+                      currency: "MZN",
+                      minimumSignificantDigits: 2,
+                    }).format(Number(service.price))}
+                  </p>
+                  <Button onClick={handleBookingOnClick} className="w-[40%]">
+                    Reservar
+                  </Button>
+                </div>
               </SheetTrigger>
 
               <SheetContent className="p-0 overflow-y-scroll w-[90%] min-h-screen [&::-webkit-scrollbar]:hidden">

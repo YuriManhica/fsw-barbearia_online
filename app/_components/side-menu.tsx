@@ -10,6 +10,7 @@ import {
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
+import { ModeToggle } from "./theme-toogle";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
 import { SheetHeader, SheetTitle } from "./ui/sheet";
@@ -43,7 +44,7 @@ const SideMenu = () => {
   return (
     <>
       <SheetHeader className="text-left border-b border-solid border-secondary p-5 md:w-[50%]">
-        <SheetTitle>Menu</SheetTitle>
+        <SheetTitle className="flex gap-4 items-center ">Menu</SheetTitle>
       </SheetHeader>
 
       {data?.user ? (
@@ -93,12 +94,21 @@ const SideMenu = () => {
       )}
 
       <div className="flex flex-col gap-3 px-5">
-        <Button variant="outline" className="justify-start" asChild>
-          <Link href="/">
-            <HomeIcon size={20} className="mr-2" />
-            Ínicio
-          </Link>
-        </Button>
+        <div className="flex justify-between items-center ">
+          <Button
+            variant="outline"
+            className="justify-start min-w-10 px-8"
+            asChild
+          >
+            <Link href="/">
+              <HomeIcon size={20} />
+              Ínicio
+            </Link>
+          </Button>
+          <div className="text-sm dark:text-gray-500">
+            Dark mode: <ModeToggle />
+          </div>
+        </div>
 
         {data?.user && (
           <>

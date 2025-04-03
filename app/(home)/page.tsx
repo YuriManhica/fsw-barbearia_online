@@ -66,6 +66,11 @@ export default async function Home() {
             <h2 className="text-md uppercase  font-bold mb-2">
               Você ainda não possui reservas ativas.
             </h2>
+            <p>
+              Aproveite essa oportunidade para agendar agora e desfrutar dos
+              nossos serviços excepcionais! Não perca tempo, reserve já e
+              descubra como podemos tornar seu dia ainda mais especial.
+            </p>
           </div>
         )}
       </div>

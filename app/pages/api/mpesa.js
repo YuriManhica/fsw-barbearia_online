@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getAccessToken } from "../../utils/api";
+import { getAccessToken } from "";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
